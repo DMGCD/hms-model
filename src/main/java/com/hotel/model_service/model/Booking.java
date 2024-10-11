@@ -1,6 +1,6 @@
 package com.hotel.model_service.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,20 +16,12 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookingId")
     int bookingId;
-    @Column(name = "roomNumber",nullable = false)
+    @Column(name = "roomNumber", nullable = false)
     int roomNumber;
-
-    @Column(name="customerId")
+    @Column(name = "customerId")
     int customerId;
-
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="customerId")
+    @JoinColumn(name = "customerId")
     private Customer customer;
 }
-/*
-
- Customer 1----------------- m Booking
-
-
-*/
