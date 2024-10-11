@@ -18,8 +18,6 @@ public class Booking {
     int bookingId;
     @Column(name = "roomNumber", nullable = false)
     int roomNumber;
-    @Column(name = "customerId")
-    int customerId;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customerId")
