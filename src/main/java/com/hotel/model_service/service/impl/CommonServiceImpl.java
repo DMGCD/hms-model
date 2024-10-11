@@ -2,9 +2,9 @@ package com.hotel.model_service.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hotel.model_service.exception.NotFoundException;
 import com.hotel.model_service.repository.CommonRepository;
 import com.hotel.model_service.service.CommonService;
-import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
