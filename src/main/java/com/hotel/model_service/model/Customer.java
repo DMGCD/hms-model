@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -33,4 +34,25 @@ public class Customer {
     @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private Set<Booking> bookingDetails;
+
+    @Column(name = "createTime")
+    private LocalDateTime createTime;
+
+    @Column(name = "updateTime")
+    private LocalDateTime updateTime;
+
+    @PrePersist
+    protected void onCreateDate() {
+        if (createTime == null) {
+            createTime = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    protected void onUpdateDate() {
+        if (updateTime == null || updateTime.isBefore(LocalDateTime.now())) {
+            updateTime = LocalDateTime.now();
+
+        }
+    }
 }
