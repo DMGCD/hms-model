@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +25,28 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
+    @Column(name = "inDate", nullable = false)
+    LocalDate inDate;
+    @Column(name = "outDate", nullable = false)
+    LocalDate outDate;
+    @Column(name = "createTime")
+    private LocalDateTime createTime;
+
+    @Column(name = "updateTime")
+    private LocalDateTime updateTime;
+
+    @PrePersist
+    protected void onCreateDate() {
+        if (createTime == null) {
+            createTime = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    protected void onUpdateDate() {
+        if (updateTime == null || updateTime.isBefore(LocalDateTime.now())) {
+            updateTime = LocalDateTime.now();
+
+        }
+    }
 }
