@@ -17,8 +17,6 @@ import java.util.Set;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    int id;
     @Column(name = "customerId")
     int customerId;
     @Column(name = "customerName", nullable = false)
@@ -54,5 +52,13 @@ public class Customer {
             updateTime = LocalDateTime.now();
 
         }
+    }
+
+    public Customer(String customerName, String customerPhone, String customerIdNumber, String userName, String password) {
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerIdNumber = customerIdNumber;
+        this.userName = userName;
+        this.password = password;
     }
 }

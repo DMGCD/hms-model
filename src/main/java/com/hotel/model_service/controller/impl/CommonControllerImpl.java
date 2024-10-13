@@ -19,7 +19,7 @@ public class CommonControllerImpl<T, ID, S extends CommonService<T, ID>> impleme
 
     @Override
     public ResponseEntity<List<T>> getAll() throws Exception {
-        return new ResponseEntity<List<T>>(service.getAllDetails(), HttpStatus.OK);
+        return new ResponseEntity<List<T>>(service.getAll(), HttpStatus.OK);
     }
 
     @Override

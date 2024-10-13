@@ -7,7 +7,7 @@ import java.util.List;
 public interface CommonService<T, ID> {
     T add(T t);
 
-    List<T> getAllDetails();
+    List<T> getAll();
 
 
     T findById(ID id);
