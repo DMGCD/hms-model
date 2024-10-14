@@ -15,25 +15,18 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "booking")
 public class Booking {
-    public Booking(int roomNumber, Customer customer, LocalDate inDate, LocalDate outDate) {
-        this.roomNumber = roomNumber;
-        this.customer = customer;
-        this.inDate = inDate;
-        this.outDate = outDate;
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookingId")
-    int bookingId;
-    @Column(name = "roomNumber", nullable = false)
-    int roomNumber;
+    private int bookingId;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
     @Column(name = "inDate", nullable = false)
-    LocalDate inDate;
+    private LocalDate inDate;
     @Column(name = "outDate", nullable = false)
     LocalDate outDate;
     @Column(name = "createTime")
@@ -41,6 +34,9 @@ public class Booking {
 
     @Column(name = "updateTime")
     private LocalDateTime updateTime;
+    @OneToOne()
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
+    private Room roomId;
 
     @PrePersist
     protected void onCreateDate() {

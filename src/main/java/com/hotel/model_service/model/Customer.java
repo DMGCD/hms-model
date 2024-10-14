@@ -19,10 +19,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerId")
     int customerId;
-    @Column(name = "customerName", nullable = false)
+    @Column(name = "name", nullable = false)
     String customerName;
-    @Column(name = "customerPhone", nullable = false)
-    String customerPhone;
+    @Column(name = "contactNumber", nullable = false)
+    String contactNumber;
     @Column(name = "customerIdNumber", nullable = false)
     String customerIdNumber;
     @Column(name = "userName", nullable = false)
@@ -54,9 +54,9 @@ public class Customer {
         }
     }
 
-    public Customer(String customerName, String customerPhone, String customerIdNumber, String userName, String password) {
+    public Customer(String customerName, String contactNumber, String customerIdNumber, String userName, String password) {
         this.customerName = customerName;
-        this.customerPhone = customerPhone;
+        this.contactNumber = contactNumber;
         this.customerIdNumber = customerIdNumber;
         this.userName = userName;
         this.password = password;
