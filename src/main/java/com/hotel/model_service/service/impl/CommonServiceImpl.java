@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> implements CommonService<T, ID> {
 
-    protected final R repository;
+    protected  R repository;
 
     @Override
     public T add(T t) {

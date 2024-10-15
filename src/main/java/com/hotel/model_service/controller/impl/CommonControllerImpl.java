@@ -2,16 +2,13 @@ package com.hotel.model_service.controller.impl;
 
 import com.hotel.model_service.controller.CommonController;
 import com.hotel.model_service.service.CommonService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 public class CommonControllerImpl<T, ID, S extends CommonService<T, ID>> implements CommonController<T, ID> {
-    protected final S service;
+    protected S service;
 
     @Override
     public ResponseEntity<T> add(T t) throws Exception {
