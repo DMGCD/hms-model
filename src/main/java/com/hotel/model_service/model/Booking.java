@@ -20,7 +20,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookingId")
-    private int bookingId;
+    private Integer bookingId;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -28,7 +28,7 @@ public class Booking {
     @Column(name = "inDate", nullable = false)
     private LocalDate inDate;
     @Column(name = "outDate", nullable = false)
-    LocalDate outDate;
+    private LocalDate outDate;
     @Column(name = "createTime")
     private LocalDateTime createTime;
 

@@ -14,7 +14,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "roomId")
-    private int roomID;
+    private Integer roomID;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "roomType", nullable = false)
     private String roomType;

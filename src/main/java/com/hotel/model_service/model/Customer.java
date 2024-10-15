@@ -18,17 +18,17 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerId")
-    int customerId;
+    private Integer customerId;
     @Column(name = "name", nullable = false)
-    String customerName;
+    private String customerName;
     @Column(name = "contactNumber", nullable = false)
-    String contactNumber;
+    private String contactNumber;
     @Column(name = "customerIdNumber", nullable = false)
-    String customerIdNumber;
+    private String customerIdNumber;
     @Column(name = "userName", nullable = false)
-    String userName;
+    private String userName;
     @Column(name = "password", nullable = false)
-    String password;
+    private String password;
     @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private Set<Booking> bookingDetails;
