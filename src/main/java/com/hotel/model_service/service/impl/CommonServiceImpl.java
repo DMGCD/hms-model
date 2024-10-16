@@ -5,43 +5,45 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hotel.model_service.exception.NotFoundException;
 import com.hotel.model_service.repository.CommonRepository;
 import com.hotel.model_service.service.CommonService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+
 public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> implements CommonService<T, ID> {
-
-    protected  R repository;
+    protected R repo;
 
     @Override
-    public T add(T t) {
-        return repository.save(t);
+    public T saveDetails(T t) {
+        return repo.save(t);
     }
 
     @Override
-    public List<T> getAll() {
-        return repository.findAll();
+    public List<T> getAllDetails() {
+        List<T> all = repo.findAll();
+        if (!all.isEmpty()) return all;
+        throw new NotFoundException("Not Found Details Of This ");
     }
 
     @Override
-    public T findById(ID id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("Not Found User For This ID "));
+    public T findDetailsById(ID id) {
+        return repo.findById(id).orElseThrow(() -> new NotFoundException("Not Found Details For This ID: " + id));
     }
 
     @Override
     public T updateDetails(T t, ID id) throws JsonProcessingException {
-        T t1 = repository.findById(id).orElseThrow(() -> new NotFoundException("Not Found This User For This ID"));
-        T updatedObject = new ObjectMapper().readerForUpdating(t1).readValue(new ObjectMapper().writeValueAsString(t));
-        return repository.saveAndFlush(updatedObject);
+        T t1 = repo.findById(id).orElseThrow(() -> new NotFoundException("Not Found Details For This ID: " + id));
+
+        T updateEntity = new ObjectMapper().readerForUpdating(t1).readValue(new ObjectMapper().writeValueAsString(t));
+        repo.saveAndFlush(updateEntity);
+
+        return updateEntity;
     }
 
     @Override
     public String deleteDetails(ID id) {
-        T t = repository.findById(id).orElseThrow(() -> new NotFoundException("Not Found This User For This ID"));
-        repository.delete(t);
-        return "successFull Delete ";
+        T t = repo.findById(id).orElseThrow(() -> new NotFoundException("Not Found Details For This ID: " + id));
+        return (t != null) ? "Delete SuccessFull!" : "Not Complete Deleted";
     }
 }

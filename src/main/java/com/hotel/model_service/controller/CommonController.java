@@ -1,19 +1,21 @@
 package com.hotel.model_service.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface CommonController<T, ID> {
 
-    ResponseEntity<T> add(T t) throws Exception;
+    ResponseEntity<T> add(T t) ;
 
-    ResponseEntity<List<T>> getAll() throws Exception;
+    ResponseEntity<List<T>> getAll() ;
 
-    ResponseEntity<T> findById(ID id) throws Exception;
+    ResponseEntity<T> findById(ID id) ;
 
-    ResponseEntity<T> update(T t, ID id) throws Exception;
+    ResponseEntity<T> update(T t, ID id) throws JsonProcessingException;
 
-    ResponseEntity<String> delete(ID id) throws Exception;
+    ResponseEntity<String> delete(ID id) ;
 
+    ResponseEntity<String> getSay();
 }
