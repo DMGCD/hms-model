@@ -2,15 +2,21 @@ package com.hotel.model_service.controller.impl;
 
 import com.hotel.model_service.controller.CommonController;
 import com.hotel.model_service.service.CommonService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+@Component
 public class CommonControllerImpl<T, ID, S extends CommonService<T, ID>> implements CommonController<T, ID> {
-    protected final S service;
+    protected  S service;
+
+    @Autowired
+    public CommonControllerImpl(S service) {
+        this.service = service;
+    }
 
     @Override
     public ResponseEntity<T> add(T t) throws Exception {
@@ -36,4 +42,11 @@ public class CommonControllerImpl<T, ID, S extends CommonService<T, ID>> impleme
     public ResponseEntity<String> delete(ID id) throws Exception {
         return new ResponseEntity<String>(service.deleteDetails(id), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<String> say(String x) throws Exception {
+        return new ResponseEntity<String>(service.say(x),HttpStatus.OK);
+    }
+
+
 }

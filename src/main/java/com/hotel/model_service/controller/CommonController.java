@@ -16,5 +16,6 @@ public interface CommonController<T, ID> {
     ResponseEntity<T> update(T t, ID id) throws Exception;
 
     ResponseEntity<String> delete(ID id) throws Exception;
+    ResponseEntity<String> say(String x)throws Exception;
 
 }

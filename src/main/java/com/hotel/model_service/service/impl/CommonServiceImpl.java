@@ -6,16 +6,15 @@ import com.hotel.model_service.exception.NotFoundException;
 import com.hotel.model_service.repository.CommonRepository;
 import com.hotel.model_service.service.CommonService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-
+@RequiredArgsConstructor
 public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> implements CommonService<T, ID> {
-    @Autowired
-    protected R repository;
+
+    protected  R repository;
+
+
 
     @Override
     public T add(T t) {
@@ -24,6 +23,8 @@ public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> impleme
 
     @Override
     public List<T> getAll() {
+
+
         return repository.findAll();
     }
 
@@ -45,4 +46,11 @@ public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> impleme
         repository.delete(t);
         return "successFull Delete ";
     }
+
+    @Override
+    public String say(String x) {
+        return "IS Send Request Value Is "+x;
+    }
+
+
 }
