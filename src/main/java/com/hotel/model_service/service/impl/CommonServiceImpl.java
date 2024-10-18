@@ -5,11 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hotel.model_service.exception.NotFoundException;
 import com.hotel.model_service.repository.CommonRepository;
 import com.hotel.model_service.service.CommonService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+@Component
 public class CommonServiceImpl<T, ID, R extends CommonRepository<T, ID>> implements CommonService<T, ID> {
 
     protected  R repository;

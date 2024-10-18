@@ -1,5 +1,7 @@
 package com.hotel.model_service.model;
 
+import com.hotel.model_service.model.enums.RoomFacilities;
+import com.hotel.model_service.model.enums.RoomType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +19,10 @@ public class Room {
     private int roomID;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "roomType", nullable = false)
-    private String roomType;
+    private RoomType roomType;
     @Enumerated(value = EnumType.STRING)
-    private String roomCategory;
+    @Column(name = "roomFacility")
+    private RoomFacilities roomFacility;
     @Column(name = "available", columnDefinition = "TINYINT() default 0")
     private boolean available;
     @Column(name = "roomPrice", nullable = false)
